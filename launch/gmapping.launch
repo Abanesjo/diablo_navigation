@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="gmapping" pkg="gmapping" type="slam_gmapping">
+        <param name="map_frame" value="map"/>
+        <param name="odom_frame" value="odom"/>
+        <param name="base_frame" value="base_footprint"/>
+        <rosparam command="load" file="$(find diablo_navigation)/config/gmapping_params.yaml" />
+    </node>
+</launch>

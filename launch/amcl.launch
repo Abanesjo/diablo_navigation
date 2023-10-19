@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="map_file" value="obstacle5"/>
+
+    <!-- Map Server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find diablo_navigation)/map/$(arg map_file)/$(arg map_file).yaml"/>
+
+    <!-- AMCL -->
+    <node name="amcl" pkg="amcl" type="amcl">
+        <param name="global_frame_id" value="map"/>
+        <param name="odom_frame_id" value="odom"/>
+        <param name="base_frame_id" value="base_footprint"/>
+    </node>
+
+    <!-- Move Base -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <remap from="cmd_vel" to="diablo/vel_cmd"/>
+
+        <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+        <rosparam file="$(find diablo_navigation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find diablo_navigation)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find diablo_navigation)/param/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find diablo_navigation)/param/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find diablo_navigation)/param/move_base_params.yaml" command="load" />
+        <rosparam file="$(find diablo_navigation)/param/dwa_local_planner_params.yaml" command="load" />
+    </node>
+
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find diablo_navigation)/rviz/navigation_costmap.rviz"/>
+</launch>

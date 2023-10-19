@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="gui" value="true"/>
+        <arg name="paused" value="true"/>
+        <arg name="headless" value="true"/>
+        <arg name="use_sim_time" value="true"/>
+    </include>
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find diablo_navigation)/urdf/lidar.urdf.xacro"/>
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model diablo -param robot_description"/>
+</launch>
