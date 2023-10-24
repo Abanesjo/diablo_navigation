@@ -4,7 +4,7 @@
     <arg name="use_sim_time"          default="true"/>
     <arg name="gui"                   default="true"/>
     <arg name="headless"              default="false"/>
-    <arg name="world_name"			  default="$(find diablo_navigation)/worlds/obstacle5.world" />
+    <arg name="world_name"			  default="$(find diablo_navigation)/worlds/obstacle2.world" />
     <arg name="paused"                default="false"/>
     <arg name="ros_control_file"      default="$(find diablo_simulation)/config/diablo_control.yaml" />
     <arg name="world_init_x"          default="0.0" />
