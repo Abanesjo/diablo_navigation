@@ -4,7 +4,7 @@
     <arg name="use_sim_time"          default="true"/>
     <arg name="gui"                   default="true"/>
     <arg name="headless"              default="false"/>
-    <arg name="world_name"			  default="$(find diablo_navigation)/worlds/obstacle2.world" />
+    <arg name="world_name"			  default="$(find diablo_navigation)/worlds/obstacle6.world" />
     <arg name="paused"                default="false"/>
     <arg name="ros_control_file"      default="$(find diablo_simulation)/config/diablo_control.yaml" />
     <arg name="world_init_x"          default="0.0" />
@@ -24,7 +24,7 @@
         <arg name="gui" value="$(arg gui)" />
         <arg name="paused" value="$(arg paused)"/>
         <arg name="use_sim_time" value="true"/>
-        <arg name="headless" value="$(arg headless)"/>
+        <arg name="headless" value="true"/>
     </include>
 
     <!-- RVIZ Visualization -->
@@ -39,7 +39,7 @@
 
     <!-- Manual Keyboard Control -->
     <remap from="/cmd_vel" to="/diablo/vel_cmd"/>
-    <node name="keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen" launch-prefix="xterm -e"/>
+    <!-- <node name="keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen" launch-prefix="xterm -e"/> -->
 
     <!-- Pointcloud To Laserscan -->
     <node name="pointcloud_to_laserscan" pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node">
